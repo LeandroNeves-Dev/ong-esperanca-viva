@@ -1,0 +1,495 @@
+/* ==========================================================================
+   DESIGN SYSTEM & VARIÁVEIS CUSTOMIZADAS
+   ========================================================================== */
+:root {
+  /* Cores Primárias e de Destaque */
+  --color-primary: #C05621;        /* Terracota Acolhedor */
+  --color-primary-hover: #9C4221;  /* Terracota Escuro (Hover/Foco) */
+  --color-secondary: #D69E2E;      /* Amarelo Ocre / Dourado Warm */
+  --color-accent: #2F855A;         /* Verde Folha (Esperança/Vida) */
+  --color-accent-hover: #22543D;    /* Verde Escuro */
+
+  /* Cores Neutras e Fundo */
+  --color-bg-main: #FAF5EF;        /* Creme / Off-White caloroso */
+  --color-bg-card: #FFFFFF;        /* Branco puro para áreas de conteúdo */
+  --color-text-main: #2D3748;      /* Grafite Escuro (Contraste AAA > 7:1) */
+  --color-text-muted: #4A5568;     /* Grafite Médio */
+  --color-border: #E2E8F0;         /* Linhas sutis de divisão */
+
+  /* Escala Tipográfica Relativa (rem) */
+  --font-family-base: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-size-xs: 0.875rem; /* 14px */
+  --font-size-sm: 1.000rem; /* 16px - Base */
+  --font-size-md: 1.250rem; /* 20px */
+  --font-size-lg: 1.750rem; /* 28px */
+  --font-size-xl: 2.500rem; /* 40px */
+
+  /* Espaçamentos Modulares (Base 8px) */
+  --spacing-xs: 0.5rem;   /* 8px */
+  --spacing-sm: 1.0rem;   /* 16px */
+  --spacing-md: 1.5rem;   /* 24px */
+  --spacing-lg: 2.5rem;   /* 40px */
+  --spacing-xl: 4.0rem;   /* 64px */
+
+  /* Estilos Globais de Bordas e Sombras */
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* ==========================================================================
+   RESET BÁSICO E CONFIGURAÇÕES GERAIS
+   ========================================================================== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 100%; /* 16px padrão */
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-sm);
+  line-height: 1.6;
+  color: var(--color-text-main);
+  background-color: var(--color-bg-main);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Acessibilidade: Foco visível para navegação por teclado */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid var(--color-secondary);
+  outline-offset: 3px;
+}
+
+/* ==========================================================================
+   CABEÇALHO E NAVEGAÇÃO
+   ========================================================================== */
+header {
+  background-color: var(--color-bg-card);
+  border-bottom: 2px solid var(--color-border);
+  padding: var(--spacing-sm) var(--spacing-md);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-sm);
+  box-shadow: var(--shadow-sm);
+}
+
+header img {
+  max-height: 55px;
+  width: auto;
+  object-fit: contain;
+}
+
+header h1 {
+  font-size: var(--font-size-md);
+  color: var(--color-primary);
+  font-weight: 700;
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+  gap: var(--spacing-sm);
+}
+
+nav a {
+  text-decoration: none;
+  color: var(--color-text-main);
+  font-weight: 600;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--radius-sm);
+  transition: background-color 0.2s, color 0.2s;
+}
+
+nav a:hover {
+  background-color: var(--color-bg-main);
+  color: var(--color-primary);
+}
+
+/* Item ativo no menu */
+nav a[aria-current="page"] {
+  background-color: var(--color-primary);
+  color: #FFFFFF;
+}
+
+/* ==========================================================================
+   CONTEÚDO PRINCIPAL (LAYOUT GRID / FLEXBOX)
+   ========================================================================== */
+main {
+  flex: 1;
+  max-width: 1000px;
+  width: 100%;
+  margin: 0 auto;
+  padding: var(--spacing-lg) var(--spacing-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+/* Estilização de Seções e Cartões */
+section, article {
+  background-color: var(--color-bg-card);
+  padding: var(--spacing-md) var(--spacing-lg);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--color-border);
+}
+
+/* Hierarquia de Títulos */
+h2 {
+  font-size: var(--font-size-lg);
+  color: var(--color-primary);
+  margin-bottom: var(--spacing-sm);
+  border-bottom: 3px solid var(--color-secondary);
+  display: inline-block;
+  padding-bottom: 4px;
+}
+
+h3 {
+  font-size: var(--font-size-md);
+  color: var(--color-primary-hover);
+  margin-top: var(--spacing-md);
+  margin-bottom: var(--spacing-xs);
+}
+
+h4 {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-main);
+  margin-top: var(--spacing-sm);
+  margin-bottom: var(--spacing-xs);
+  font-weight: 700;
+}
+
+p {
+  margin-bottom: var(--spacing-sm);
+}
+
+ul {
+  margin-left: var(--spacing-md);
+  margin-bottom: var(--spacing-sm);
+}
+
+li {
+  margin-bottom: var(--spacing-xs);
+}
+
+/* Imagens Responsivas */
+img {
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--radius-sm);
+  display: block;
+  margin: var(--spacing-sm) 0;
+}
+
+hr {
+  border: 0;
+  height: 1px;
+  background-color: var(--color-border);
+  margin: var(--spacing-lg) 0;
+}
+
+/* ==========================================================================
+   FORMULÁRIOS (TELA DE CADASTRO)
+   ========================================================================== */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  margin-top: var(--spacing-sm);
+}
+
+fieldset {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: var(--spacing-md);
+  background-color: var(--color-bg-main);
+}
+
+legend {
+  padding: 0 var(--spacing-xs);
+  color: var(--color-primary);
+  font-weight: bold;
+}
+
+label {
+  font-weight: 600;
+  display: block;
+  margin-bottom: 4px;
+  color: var(--color-text-main);
+}
+
+input[type="text"],
+input[type="tel"],
+input[type="email"],
+select,
+textarea {
+  width: 100%;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  font-size: var(--font-size-sm);
+  font-family: inherit;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background-color: #FFFFFF;
+  color: var(--color-text-main);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(192, 86, 33, 0.2);
+}
+
+button[type="submit"] {
+  background-color: var(--color-accent);
+  color: #FFFFFF;
+  font-size: var(--font-size-md);
+  font-weight: bold;
+  padding: var(--spacing-sm) var(--spacing-md);
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s;
+  align-self: flex-start;
+}
+
+button[type="submit"]:hover {
+  background-color: var(--color-accent-hover);
+}
+
+button[type="submit"]:active {
+  transform: scale(0.98);
+}
+
+/* Chamadas para Ação / Links Estilizados */
+section[aria-labelledby="titulo-chamada"] a {
+  display: inline-block;
+  background-color: var(--color-primary);
+  color: #FFFFFF;
+  text-decoration: none;
+  font-weight: bold;
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: var(--radius-sm);
+  transition: background-color 0.2s;
+}
+
+section[aria-labelledby="titulo-chamada"] a:hover {
+  background-color: var(--color-primary-hover);
+}
+
+/* ==========================================================================
+   RODAPÉ
+   ========================================================================== */
+footer {
+  background-color: var(--color-text-main);
+  color: #FFFFFF;
+  text-align: center;
+  padding: var(--spacing-md);
+  margin-top: auto;
+  font-size: var(--font-size-xs);
+}
+
+/* ==========================================================================
+   RESPONSIVIDADE (MEDIA QUERIES)
+   ========================================================================== */
+@media (max-width: 600px) {
+  header {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  nav ul {
+    flex-direction: column;
+    width: 100%;
+    gap: var(--spacing-xs);
+  }
+
+  nav a {
+    display: block;
+    text-align: center;
+  }
+
+  button[type="submit"] {
+    width: 100%;
+  }
+}
+
+/* Container Principal com CSS Grid de 12 colunas */
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--spacing-md, 1.5rem); /* Spacing modular de 24px */
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-sm, 1.0rem);
+}
+
+/* Classes utilitárias para alocação de colunas (Grid-Span) */
+.col-12 { grid-column: span 12; }
+.col-8  { grid-column: span 8;  }
+.col-6  { grid-column: span 6;  }
+.col-4  { grid-column: span 4;  }
+.col-3  { grid-column: span 3;  }
+
+/* Reorganização dinâmica para telas menores (Mobile First) */
+@media (max-width: 768px) {
+  .col-8, .col-6, .col-4, .col-3 {
+    grid-column: span 12; /* Ocupa largura total em dispositivos móveis */
+  }
+}
+
+/* ==========================================================================
+   COMPONENTES DE FEEDBACK VISUAL: BADGES, ALERTAS E TOAST/MODAL
+   ========================================================================== */
+
+/* 1. ETIQUETAS / BADGES */
+.badge {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-radius: 50px;
+  margin-bottom: var(--spacing-xs);
+}
+
+.badge-primary {
+  background-color: rgba(192, 86, 33, 0.15);
+  color: var(--color-primary);
+  border: 1px solid var(--color-primary);
+}
+
+.badge-success {
+  background-color: rgba(47, 133, 90, 0.15);
+  color: var(--color-accent);
+  border: 1px solid var(--color-accent);
+}
+
+/* 2. CAIXAS DE ALERTA */
+.alert {
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: var(--radius-sm);
+  margin-bottom: var(--spacing-md);
+  font-size: var(--font-size-sm);
+  border-left: 5px solid;
+}
+
+.alert-info {
+  background-color: #EBF8FF;
+  color: #2B6CB0;
+  border-color: #3182CE;
+}
+
+.alert-success {
+  background-color: #F0FFF4;
+  color: #276749;
+  border-color: var(--color-accent);
+}
+
+/* 3. TOAST / NOTIFICAÇÃO FLUTUANTE DE SUCESSO (CSS Puro) */
+.toast {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 9999;
+  max-width: 400px;
+  background-color: #FFFFFF;
+  border-radius: var(--radius-md);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  border-left: 6px solid var(--color-accent);
+  padding: var(--spacing-sm) var(--spacing-md);
+  
+  /* Oculto por padrão */
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px);
+  transition: all 0.4s ease-in-out;
+}
+
+/* Exibe o Toast quando a URL contiver o fragmento #toast-sucesso (após clicar no botão) */
+.toast:target {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.toast-content {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.toast-icon {
+  background-color: var(--color-accent);
+  color: #FFFFFF;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  flex-shrink: 0;
+}
+
+.toast strong {
+  color: var(--color-text-main);
+  font-size: var(--font-size-sm);
+  display: block;
+}
+
+.toast p {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-xs);
+  margin: 0;
+}
+
+.toast-close {
+  color: var(--color-text-muted);
+  text-decoration: none;
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-left: auto;
+  padding: 0 4px;
+}
+
+.toast-close:hover {
+  color: var(--color-text-main);
+}
+
+/* ==========================================================================
+   ESTILOS DE VALIDAÇÃO DE FORMULÁRIO VIA JS
+   ========================================================================== */
+.input-invalido {
+  border-color: #E53E3E !important;
+  box-shadow: 0 0 0 2px rgba(229, 62, 62, 0.2) !important;
+}
+
+.input-valido {
+  border-color: var(--color-accent) !important;
+}
+
+.mensagem-erro-input {
+  color: #E53E3E;
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  margin-top: 4px;
+  display: none;
+}
